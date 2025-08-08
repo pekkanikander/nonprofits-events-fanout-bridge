@@ -1,0 +1,22 @@
+title: "[General] "
+labels: ["general"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome! Share your topic or update below.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What would you like to discuss?
+      description: A short summary (one or two sentences).
+      placeholder: Brief summary here
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Add context, links, or examples.

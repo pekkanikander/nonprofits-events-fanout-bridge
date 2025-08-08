@@ -1,0 +1,27 @@
+title: "[Q&A] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask a question about using NEFB. Include what you tried and what you expected.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      placeholder: What's confusing or not working?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: What you tried
+      placeholder: Steps, screenshots, or links
+
+  - type: input
+    id: context
+    attributes:
+      label: Context (optional)
+      placeholder: Wix/Facebook/Instagram; languages; anything relevant

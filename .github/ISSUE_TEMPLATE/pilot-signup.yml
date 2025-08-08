@@ -1,0 +1,90 @@
+name: Pilot sign-up
+description: Volunteer your nonprofit to pilot NEFB (Nonprofit Events Fanout Bridge)
+title: "Pilot: <Org name> — <City, Country>"
+labels: ["pilot", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for volunteering! Please fill what's easy; skip the rest. You can edit later.
+  - type: input
+    id: org_name
+    attributes:
+      label: Organization name
+      placeholder: e.g., Friends of the Park
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Website
+      placeholder: https://example.org
+  - type: input
+    id: contact
+    attributes:
+      label: Contact person & email
+      placeholder: Name <name@example.org>
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Current platforms (select all that apply)
+      multiple: true
+      options:
+        - Wix
+        - Facebook Page
+        - Instagram
+        - WordPress
+        - Other
+  - type: input
+    id: wix_url
+    attributes:
+      label: Wix site URL (if applicable)
+  - type: input
+    id: facebook_page
+    attributes:
+      label: Facebook Page URL (if applicable)
+  - type: input
+    id: instagram
+    attributes:
+      label: Instagram handle (if applicable)
+      placeholder: "@yourorg"
+  - type: input
+    id: calendar
+    attributes:
+      label: Google Calendar link or ID (if ready)
+  - type: checkboxes
+    id: instagram_business
+    attributes:
+      label: Instagram Business account status
+      options:
+        - label: We have an Instagram Business account linked to our Facebook Page
+        - label: We have Instagram but it is not Business
+        - label: No Instagram
+  - type: input
+    id: events_per_month
+    attributes:
+      label: Approx. events per month
+      placeholder: e.g., 3–10
+  - type: textarea
+    id: languages
+    attributes:
+      label: Languages used
+      placeholder: e.g., English, Finnish, Swedish
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility notes (optional)
+      placeholder: e.g., We rely on image alt text; wheelchair access info; hearing loop, etc.
+  - type: textarea
+    id: anything_else
+    attributes:
+      label: Anything else we should know?
+      placeholder: Constraints, hopes, timelines…
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent
+      options:
+        - label: We are okay testing pre-release software and understand it may have bugs.
+          required: true

@@ -1,0 +1,27 @@
+title: "[Idea] "
+labels: ["ideas"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share an idea to make NEFB better. Focus on the user problem first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      placeholder: As a <role>, I want … so that …
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: What might help?
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Who benefits?
+      placeholder: Which nonprofits or audiences would this help?

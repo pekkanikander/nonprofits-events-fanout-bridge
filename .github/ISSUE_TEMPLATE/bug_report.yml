@@ -1,0 +1,46 @@
+name: Bug report
+description: Something isn't working as expected
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug! Please include as much detail as you can.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+      placeholder: Tell us what you see.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. …
+        2. …
+        3. …
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did this happen? (select all that apply)
+      multiple: true
+      options:
+        - Wix
+        - Facebook
+        - Instagram
+        - WordPress
+        - CLI
+        - GitHub Actions
+  - type: input
+    id: version
+    attributes:
+      label: Version/commit (if known)
+      placeholder: v0.1.0 or commit SHA
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      render: bash
