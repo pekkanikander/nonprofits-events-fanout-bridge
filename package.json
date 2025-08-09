@@ -33,7 +33,7 @@
     "@wix/app-management": "^1.0.117",
     "@wix/sdk": "^1.15.26",
     "express": "^5.1.0",
-    "googleapis": "^128.0.0",
+    "googleapis": "^155.0.1",
     "yaml": "^2.3.0",
     "zod": "^3.22.0"
   }
