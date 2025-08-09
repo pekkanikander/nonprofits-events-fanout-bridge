@@ -1,0 +1,53 @@
+---
+description: When debugging external API authentication issues, prioritize reading documentation over guess-and-test approaches. This rule prevents wasting hours on wrong authentication methods by ensuring systematic documentation research first.
+globs:
+alwaysApply: true
+---
+
+# Documentation-First API Debugging Rule
+
+## Critical Rules
+
+- **STOP and READ DOCS FIRST** when encountering external API authentication errors
+- Never spend more than 30 minutes guessing authentication patterns without consulting official documentation
+- When user mentions API issues, immediately ask: "Have we verified we're using the correct authentication method from the latest documentation?"
+- For OAuth/authentication errors, search for official documentation before building test frameworks
+- Distinguish between "configuration issues" (wrong credentials) and "method issues" (wrong authentication approach)
+
+## When This Rule Applies
+
+- External API authentication failures (401, 403, 428 errors)
+- "Missing context" or "invalid token" type errors
+- When user reports API worked before but stopped working
+- When encountering unfamiliar API patterns or error messages
+- Before building complex testing frameworks for authentication
+
+## Required Process
+
+1. **DOCUMENTATION FIRST**: Read official API documentation for current version
+2. **Verify Authentication Method**: Confirm we're using the correct auth approach (OAuth vs API key vs other)
+3. **Check for Version Changes**: Ensure we're using current API version and endpoints
+4. **Then Test**: Only after understanding the correct method, implement and test
+
+## Examples
+
+<example>
+User: "Getting MISSING_REQUEST_SITE_CONTEXT error from Wix Events API"
+Assistant Response: "Let me first read the current Wix Events API documentation to understand the proper authentication method before we debug this error."
+</example>
+
+<example type="invalid">
+User: "Getting authentication errors from external API"
+Assistant Response: "Let's try different header combinations and build a testing framework to debug this."
+</example>
+
+## Historical Context
+
+This rule was created after spending 6+ hours debugging Wix Events API authentication issues using wrong method (raw app secret as Bearer token) instead of proper OAuth 2.0 flow (token exchange). The documentation contained the exact solution, but guess-and-test approach prevented discovering it quickly.
+
+## Meta-Insight Preservation
+
+- **Problem**: LLM tendency to prioritize action/coding over documentation reading
+- **Root Cause**: Optimization for "demonstrating progress through code"
+- **Solution**: Force documentation research before implementation for external API issues
+- **Lesson**: "Move fast and build tools" fails when fundamental approach is wrong
