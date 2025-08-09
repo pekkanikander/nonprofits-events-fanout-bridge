@@ -1,0 +1,40 @@
+{
+  "name": "nefb-events-bridge",
+  "version": "0.1.0",
+  "description": "Nonprofits Events Fanout Bridge - One-way event sync from Google Calendar to multiple platforms",
+  "main": "dist/cli.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "events",
+    "nonprofit",
+    "calendar",
+    "sync",
+    "fanout"
+  ],
+  "author": "Pekka Ilmari Nikander <pnr@iki.fi>",
+  "license": "Unlicense",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "@wix/app-management": "^1.0.117",
+    "@wix/sdk": "^1.15.26",
+    "express": "^5.1.0",
+    "googleapis": "^128.0.0",
+    "yaml": "^2.3.0",
+    "zod": "^3.22.0"
+  }
+}
