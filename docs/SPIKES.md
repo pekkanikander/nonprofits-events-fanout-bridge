@@ -81,10 +81,19 @@ CALENDAR_ID=...
 3. **Data Validation**: Custom validation needed for datetime formats
 4. **Error Handling**: Graceful handling of missing or malformed data
 
+### Lessons Learned
+📖 **Detailed lessons documented in**: [`GOOGLE-CALENDAR-LESSONS-LEARNED.md`](./GOOGLE-CALENDAR-LESSONS-LEARNED.md)
+
+**Key insights:**
+- `googleapis@128.x` causes hanging issues → upgrade to v155.x+
+- Google APIs provide excellent developer experience
+- OAuth2 desktop flow is straightforward when properly implemented
+- Clean separation of auth, token exchange, and data fetching
+
 ### Next Steps
-- [ ] Integrate into main application architecture
+- ✅ **Integration Complete**: Ready for production use
 - [ ] Add support for multiple calendars per tenant
-- [ ] Implement event change detection (new/updated/deleted)
+- [ ] Implement event change detection (webhooks or polling)
 - [ ] Add rate limiting and error retry logic
 
 ---
