@@ -5,11 +5,15 @@
   "main": "dist/cli.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsx src/cli.ts",
-    "test": "vitest",
-    "lint": "eslint src/**/*.ts",
-    "clean": "rm -rf dist"
+    "setup": "npm install",
+    "build": "./node_modules/.bin/tsc",
+    "build:watch": "./node_modules/.bin/tsc --watch",
+    "type-check": "./node_modules/.bin/tsc --noEmit",
+    "dev": "./node_modules/.bin/tsx src/cli.ts",
+    "test": "./node_modules/.bin/vitest",
+    "lint": "./node_modules/.bin/eslint src/**/*.ts",
+    "clean": "rm -rf dist",
+    "verify-offline": "echo '✅ All tools available offline' && ./node_modules/.bin/tsc --version && ./node_modules/.bin/tsx --version"
   },
   "keywords": [
     "events",

@@ -118,6 +118,23 @@ If you’re a small nonprofit and want to pilot this, we’d love to talk.
 
 ---
 
+## Development
+
+### Quick Start
+```bash
+npm run setup           # Install all dependencies
+npm run verify-offline  # Confirm offline-ready
+npm run dev auth        # Test Google Calendar auth
+```
+
+### Offline Development
+This project is designed for **100% offline development** after initial setup. See [`docs/OFFLINE-DEVELOPMENT.md`](docs/OFFLINE-DEVELOPMENT.md) for detailed workflow and troubleshooting.
+
+### Architecture Spikes
+Current implementation status and lessons learned: [`docs/SPIKES.md`](docs/SPIKES.md)
+
+---
+
 ## FAQ (short)
 
 **Is this a sync tool?**
