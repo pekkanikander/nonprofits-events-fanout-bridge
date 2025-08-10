@@ -36,6 +36,7 @@
   "dependencies": {
     "@wix/app-management": "^1.0.117",
     "@wix/sdk": "^1.15.26",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "googleapis": "^155.0.1",
     "yaml": "^2.3.0",
