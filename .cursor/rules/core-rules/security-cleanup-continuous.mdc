@@ -1,0 +1,45 @@
+---
+title: Continuous Security & Cleanup Rule
+---
+
+# Continuous Security & Cleanup Rule
+
+## Critical Rules
+
+- **Never commit hardcoded secrets, tokens, or API keys** - always use environment variables or secure secret management
+- **Clean up test data and temporary files** after spikes - move working code to appropriate locations, remove experimental files
+- **Review security implications** of any new external API integrations before implementation
+- **Document technical debt** with clear TODO comments when workarounds are necessary
+- **Maintain clean git history** - avoid committing debugging code, console.logs, or temporary fixes
+
+## Security Practices
+
+- **API Credentials**: Store in `.env` files (gitignored) or platform secret stores
+- **Test Data**: Never commit real API responses, JWT tokens, or sensitive test data
+- **Dependencies**: Regularly audit `package.json` for security vulnerabilities
+- **Environment Variables**: Use `env.example` for documentation, never commit actual `.env` files
+
+## Cleanup Practices
+
+- **Build Artifacts**: Remove `dist/`, `build/`, `*.tsbuildinfo` when requested by the user
+- **Temporary Files**: Clean up test scripts, debug files, and experimental code
+- **Spike Management**: After successful spikes, move working code to `spike/` and `src/` subdirectories, remove temporary files
+- **Documentation**: Keep `docs/` updated with current project state and lessons learned
+
+## Examples
+
+<example>
+✅ **Good**: After Facebook spike, move working adapter to `src/adapters/facebook.ts`, remove test scripts, update SPIKES.md
+</example>
+
+<example type="invalid">
+❌ **Bad**: Committing test scripts with hardcoded tokens, leaving build artifacts in repo, not cleaning up after spikes
+</example>
+
+## When to Apply
+
+- Before any commit to main branch
+- After completing architecture spikes
+- When adding new external API integrations
+- During regular repository maintenance
+- When reviewing pull requests or merge requests
