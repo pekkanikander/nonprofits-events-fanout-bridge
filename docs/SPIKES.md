@@ -467,6 +467,92 @@ Validate our approach to state management and idempotent operations.
 
 ---
 
+## Spike 5: Multi-tenant Control Plane & State (Backbone)
+
+**Status**: 🔄 PLANNED
+**Date**: TBD
+**Duration**: ~1–2 days
+
+### Objective
+Stand up a minimal control plane and state layer so one org’s events can fan out to Wix **idempotently**. This becomes the backbone for CLI, PWA, and future workers.
+
+### Proposed Implementation
+- **Data shapes**: `Org`, `Source`, `Connection`, `Event`, `Delivery` (only fields needed for MVP).
+- **State storage**: File-based JSON or KV (MVP). Later upgradeable to D1/SQLite or Postgres.
+- **Idempotency**: Content-hash per channel based on the **rendered payload** (not raw event).
+- **APIs/Functions**:
+  - `ingest` (source → normalized events for next N days)
+  - `preview(tenant)` (compute per-channel actions with hashes)
+  - `apply(tenant)` (create/update/delete on Wix; record `{platform_id, last_hash, timestamps}`)
+- **Controls**: per-tenant **pause** toggle; per-channel toggles; retry with exponential backoff; dead-letter log.
+- **Security**: No secrets in repo; per-tenant secrets via env or secrets store.
+
+### Success Criteria
+- Two tenants with different calendars can **preview** and **apply** to **Wix** without duplicates.
+- Updates change existing posts; cancellations delete/close appropriately.
+- Delivery records visible (basic audit: created/updated/skipped/errors).
+
+### Code Structure (initial)
+```
+src/
+  core/
+    model.ts         # Event + Delivery types, validation
+    state.ts         # get/set delivery records; hash helpers
+  ingestion/
+    gcal.ts          # source → normalized events
+  adapters/
+    wix.ts           # create/update/delete; pure functions
+  api/
+    preview.ts
+    apply.ts
+```
+
+### Notes & Risks
+- **Hash drift**: stabilize by hashing the rendered payload after normalization.
+- **Partial failures**: isolate per-event/per-channel; retries with backoff.
+- **Scaling**: design for later move to queue + DB without changing interfaces.
+
+---
+
+## Spike 6: PWA Shell (Auth + Connect Wizard, Minimal)
+
+**Status**: 🔄 PLANNED
+**Date**: TBD
+**Duration**: ~1–2 days
+
+### Objective
+Validate the 5-minute setup UX. A mobile-first web shell that signs in, connects source/destination, shows a preview, and can trigger Apply.
+
+### Proposed Implementation
+- **Auth**: Passkey (WebAuthn) sign-in with **email magic link** fallback.
+- **Wizard steps**:
+  1) Identify org (name, locale, time zone)
+  2) Connect **Google Calendar** (paste ICS)
+  3) Connect **Wix** (OAuth; token lands server-side)
+  4) **Preview** next 3 events (calls 5 `preview`)
+  5) **Go live** toggle (calls 5 `apply`)
+- **Health card stub**: “Wix ✓ · Facebook ⚠ Reconnect · Instagram — Not connected”.
+- **Accessibility**: mobile-first layout; plain language; required alt text in forms.
+- **Secrets**: device manages consent; **server** stores tokens (encrypted) for scheduled jobs.
+
+### Success Criteria
+- A new user completes the wizard on phone or desktop and pushes one event to Wix.
+- Passkeys work on iOS/Android/desktop; magic link works as fallback.
+- Dry-run preview clearly shows intended actions before Apply.
+
+### Screens (text wireframe)
+- **Sign in** (Passkey or email link)
+- **Connect** (Org → Source → Wix)
+- **Preview** (list of changes: create/update/delete)
+- **Go live** (toggle + per-channel switches)
+- **Health** (Wix/FB/IG status; Reconnect/Pause buttons)
+
+### Notes
+- FB/IG are optional and can be added after this spike.
+- Reuse Spike 5 API endpoints to avoid duplicate logic.
+
+---
+
 ## General Spike Guidelines
 
 ### Before Starting
